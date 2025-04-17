@@ -17,8 +17,8 @@ void loop() {
   int buttonState = digitalRead(BUTTON_PIN);
   if (buttonState==1)
     {
-       analogWrite(LED_PIN_1,127);
-       analogWrite(LED_PIN_2,127);
+       analogWrite(LED_PIN_1,255);
+       analogWrite(LED_PIN_2,255);
        delay(10000);
        analogWrite(LED_PIN_1,0);
        delay(20000)
