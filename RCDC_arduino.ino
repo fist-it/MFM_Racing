@@ -88,7 +88,7 @@ void loop() {
       lcd.setCursor(0, 1);
       lcd.print("2: L");
     }
-    if (thirdLedCounter%3 == 0) {
+    if (thirdLedCounter%10 == 0) {
       if(possibleChangeOfThirdLed) {
         possibleChangeOfThirdLed = 0;
         thirdLedState = !thirdLedState;
