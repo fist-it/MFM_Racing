@@ -1,1 +1,1 @@
-![Dazzling Krunk](https://github.com/user-attachments/assets/53bf05da-2d48-46b5-b111-d0a38d9aa172)
+![Dazzling Krunk](https://github.com/user-attachments/assets/58fba242-0934-4f89-8c5f-610e7ad6f37a)
