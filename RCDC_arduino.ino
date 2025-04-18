@@ -69,12 +69,12 @@ void loop() {
     
   }
   else {
-  if (counter==clickCount * 10){
+  if (counter==clickCount * 10){ // set to *1 for debugging
        analogWrite(LED_PIN_1,0);
     	lcd.setCursor(0, 0);
   		lcd.print("1: L");
     }
-  if (counter==clickCount * 30){
+  if (counter==clickCount * 30){ // set to *3 for debugging
     analogWrite(LED_PIN_2,0);
     lcd.setCursor(0, 1);
   	lcd.print("2: L");
