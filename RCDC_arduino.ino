@@ -94,11 +94,11 @@ void loop() {
     if(thirdLedState) {
       analogWrite(LED_PIN_3, 255);
       lcd.setCursor(5, 0);
-      lcd.print("3: H")
+      lcd.print("3: H");
     } else {
       analogWrite(LED_PIN_3, 0);
       lcd.setCursor(5, 0);
-      lcd.print("3: L")
+      lcd.print("3: L");
     }
   }
 }
