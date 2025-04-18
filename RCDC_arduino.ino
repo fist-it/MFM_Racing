@@ -8,6 +8,7 @@
 const int BUTTON_PIN = 2;
 const int LED_PIN_1 = 3;
 const int LED_PIN_2 = 5;
+const int LED_PIN_3 = 7;
 const int countDelay = 1000;
 int newbutton = 0;
 int oldbutton = 0;// Poprzedni stan przycisku
@@ -19,6 +20,9 @@ int previousClickTime = 0;
 int counter = 0;
 int extra_time = 0;
 
+int thirdLedCounter = 0;
+int thirdLedState = 0;
+
 unsigned long previousTime = 0;
 
 LiquidCrystal_I2C lcd(0x27, 16, 2); // Adres I2C może się różnić (np. 0x3F)
@@ -28,6 +32,7 @@ void setup() {
   pinMode(BUTTON_PIN, INPUT_PULLUP);
   pinMode(LED_PIN_1, OUTPUT);
   pinMode(LED_PIN_2, OUTPUT);
+  pinMode(LED_PIN_3, OUTPUT);
   
   lcd.init();       // Inicjalizacja LCD
   lcd.backlight();  // Włącz podświetlenie
@@ -35,6 +40,8 @@ void setup() {
   lcd.print("1: L");
   lcd.setCursor(0, 1);
   lcd.print("2: L");
+  lcd.setCursor(5, 0);
+  lcd.print("3: L")
 
 }
 
@@ -42,6 +49,7 @@ void countWithDelay() {
   if (millis() - previousTime >= countDelay) {
     previousTime = millis();
     counter++;
+    thirdLedCounter++;
     Serial.println(counter);
     Serial.println(clickCount);
   }
@@ -78,6 +86,19 @@ void loop() {
     analogWrite(LED_PIN_2,0);
     lcd.setCursor(0, 1);
   	lcd.print("2: L");
+    }
+  }
+  if (thirdLedCounter%10 == 0) {
+    thirdLedState != thirdLedState;
+
+    if(thirdLedState) {
+      analogWrite(LED_PIN_3, 255);
+      lcd.setCursor(5, 0);
+      lcd.print("3: H")
+    } else {
+      analogWrite(LED_PIN_3, 0);
+      lcd.setCursor(5, 0);
+      lcd.print("3: L")
     }
   }
 }
