@@ -22,6 +22,7 @@ int extra_time = 0;
 
 int thirdLedCounter = 0;
 int thirdLedState = 0;
+int possibleChangeOfThirdLed = 1;
 
 unsigned long previousTime = 0;
 
@@ -41,7 +42,7 @@ void setup() {
   lcd.setCursor(0, 1);
   lcd.print("2: L");
   lcd.setCursor(5, 0);
-  lcd.print("3: L")
+  lcd.print("3: L");
 
 }
 
@@ -51,7 +52,7 @@ void countWithDelay() {
     counter++;
     thirdLedCounter++;
     Serial.println(counter);
-    Serial.println(clickCount);
+    Serial.println(thirdLedCounter);
   }
 }
 
@@ -71,34 +72,40 @@ void loop() {
       analogWrite(LED_PIN_1,255);
     	lcd.setCursor(0, 0);
   		lcd.print("1: H");
-       analogWrite(LED_PIN_2,255);
+      analogWrite(LED_PIN_2,255);
     	lcd.setCursor(0, 1);
   		lcd.print("2: H");
     
   }
   else {
-  if (counter==clickCount * 10){ // set to *1 for debugging
+    if (counter==clickCount * 10){ // set to *1 for debugging
        analogWrite(LED_PIN_1,0);
     	lcd.setCursor(0, 0);
   		lcd.print("1: L");
     }
-  if (counter==clickCount * 30){ // set to *3 for debugging
-    analogWrite(LED_PIN_2,0);
-    lcd.setCursor(0, 1);
-  	lcd.print("2: L");
+    if (counter==clickCount * 30){ // set to *3 for debugging
+      analogWrite(LED_PIN_2,0);
+      lcd.setCursor(0, 1);
+      lcd.print("2: L");
     }
-  }
-  if (thirdLedCounter%10 == 0) {
-    thirdLedState != thirdLedState;
+    if (thirdLedCounter%3 == 0) {
+      if(possibleChangeOfThirdLed) {
+        possibleChangeOfThirdLed = 0;
+        thirdLedState = !thirdLedState;
 
-    if(thirdLedState) {
-      analogWrite(LED_PIN_3, 255);
-      lcd.setCursor(5, 0);
-      lcd.print("3: H");
+        if(thirdLedState) {
+          analogWrite(LED_PIN_3, 255);
+          lcd.setCursor(5, 0);
+          lcd.print("3: H");
+        } else {
+          analogWrite(LED_PIN_3, 0);
+          lcd.setCursor(5, 0);
+          lcd.print("3: L");
+        }
+      }
     } else {
-      analogWrite(LED_PIN_3, 0);
-      lcd.setCursor(5, 0);
-      lcd.print("3: L");
+      possibleChangeOfThirdLed = 1;
     }
   }
+
 }
