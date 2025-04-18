@@ -1,0 +1,93 @@
+\documentclass[a4paper,12pt]{article}  % or "report" for larger documents
+
+\usepackage{polski}  % Polish language support
+\usepackage[utf8]{inputenc}  % UTF-8 encoding
+\usepackage{amsmath, amssymb}  % Math support
+\usepackage{float}
+\usepackage{graphicx}  % Insert images
+\usepackage{hyperref}  % Clickable links
+\usepackage{biblatex}  % Bibliography management
+\addbibresource{references.bib}  % Reference file
+\renewcommand{\figurename}{rys.}
+
+\title{Zadanie konkursowe, eliminajce:\\ Strefa zgniotu}
+\author{
+  Milosz, Tesiorowski\\
+  \and
+  Maksymilian Borowy\\
+  \and
+  Milosz Medwid\\
+  \and
+  Franciszek Fabinski\\
+}
+\date{\today}
+
+\begin{document}
+
+\maketitle  % Generates title page
+
+% Wymagania i punktacja:
+% 
+% Zrozumienie działania strefy zgniotu – 30 pkt.
+% Kreatywność i innowacyjność – 30 pkt.
+% Estetyka dokumentacji – 20 pkt.
+% 
+% im fajniejsze beda foty tym lepiej wyjdziemy
+
+\section{Wstep teoretyczny}
+strefa zgniotu polega na rozłożeniu energii kinetycznej na duży obszar w
+trakcie kolizji przez największą ilość czasu, przez co pasażerowie będą 
+narażeni na o wiele mniejsze przeciążenie i co za tym idzie zmniejsza się szansa 
+na odniesienie uszczerbku na zdrowiu. Aby strefa zgniotu działała prawidłowo należy 
+dobrać materiały podatne na deformację takie jak plastiki oraz aluminium. W niej ważne 
+również jest użycie belek, ram i podłużnic, aby skutecznie przekierować siłę z dala od kabiny pojazdu.
+
+Ważnymi wzorami, które opisują wartości fizyczne dla strefy zgniotu są:
+\begin{equation}
+  t = 2 \cdot \frac{s}{v}
+\end{equation}
+
+Dzięki temu wzorowi możemy obliczyć czas, w którym następuje kolizja:
+
+\begin{equation}
+  a = \frac{v^2}{2 \cdot s}
+\end{equation}
+
+Dzięki temu wzorowi możliwe jest obliczenie przyspieszenia, a po przeliczeniu na ilość przyspieszeń ziemskich można obliczyć jak mocne przeciążenie powstanie.
+
+\begin{equation}
+  F_{\text{avg}} \delta t = m \delta v
+\end{equation}
+
+Tym wzorem obliczymy siłę nałożoną na pojazd rozłożoną w czasie.
+
+
+\subsection{Zasady BHP}
+
+Projekt realizuje zasady BHP:
+Chroni użytkownika: przez zabezpieczenie akumulatora, silnika i elektroniki (ograniczenie ryzyka zwarcia, przegrzania, wybuchu), a także pojazd: dzięki sprężystym spiralom ograniczającym uszkodzenia, również chroni środowisko pracy modelu: zapobiega oderwaniu się elementów, które mogłyby stanowić zagrożenie np. dla innych modeli lub osób.
+
+Spełnia założenia bezpiecznego użytkowania modeli RC:
+brak ostrych krawędzi,
+kontrolowane pochłanianie sił,
+trwałość konstrukcji,
+możliwość łatwej wymiany elementów po kolizji.
+
+\section{Analiza dostepnych technologii}
+
+Projekt wykorzystuje dostępne technologię, co czyni go nie tylko przystępnym dla użytkowników ale też ekologicznym i bezpiecznym.wykorzystuje technologie dostępne w modelarstwie RC:
+sprężyny tłumiące/spiralne,
+tworzywa sztuczne (ABS, PLA),
+druk 3D jako metoda wykonania.
+
+Odnosi się do rozwiązań z motoryzacji, np.:
+
+elastyczne struktury deformujące
+absorbery zderzeń 
+Jest oparty o komponenty powszechnie dostępne w sklepach modelarskich lub do druku 3D – łatwe do wdrożenia i testowania.
+Spełnia wymóg przystosowania do realnych możliwości technicznych
+
+\printbibliography
+
+\end{document}
+

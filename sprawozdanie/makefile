@@ -1,8 +1,12 @@
 BUILD_DIR=build
 
 
-sprawko: latex-compile
-	sioyek $(BUILD_DIR)/sprawozdanie.pdf
+view: latex-compile
 
-latex-compile:
-	pdflatex -output-directory="./$(BUILD_DIR)" ./sprawozdanie.tex
+latex-compile: compile1, compile2
+
+compile1:
+	pdflatex -output-directory="./$(BUILD_DIR)" ./analiza.tex
+
+compile2:
+	pdflatex -output-directory="./$(BUILD_DIR)" ./koncepcja.tex
