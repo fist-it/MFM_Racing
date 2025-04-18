@@ -28,8 +28,10 @@ void setup() {
   
   lcd.init();       // Inicjalizacja LCD
   lcd.backlight();  // Włącz podświetlenie
-
   lcd.setCursor(0, 0);
+  lcd.print("1: L");
+  lcd.setCursor(0, 1);
+  lcd.print("2: L");
 }
 
 void countWithDelay() {
