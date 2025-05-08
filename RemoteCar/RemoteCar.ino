@@ -13,8 +13,8 @@
 #define MOTOR_B_PIN         4
 #define MOTOR_B_REVERSE_PIN 5
 
-#define SPEED_A_PIN 0
-#define SPEED_B_PIN 0
+#define SPEED_A_PIN 6
+#define SPEED_B_PIN 6
 
 
 RF24 radio(7, 8); // CE, CSN
@@ -56,6 +56,9 @@ void parse_packet(char msg[32]){
   }
   reverse = false;
 
+  joystick_X = map(joystick_X, -255, 255, 33, 123);
+  
+
   if(joystick_Y<0){
     reverse = true;
     joystick_Y = abs(joystick_Y);
@@ -81,28 +84,27 @@ void loop() {
   }
   
   if(!reverse && joystick_Y){
-    analogWrite(MOTOR_A_PIN,         HIGH)
-    analogWrite(MOTOR_B_PIN,         HIGH)
-    analogWrite(MOTOR_A_PIN_REVERSE, LOW)
-    analogWrite(MOTOR_B_PIN_REVERSE, LOW)
+    analogWrite(MOTOR_A_PIN,         HIGH);
+    analogWrite(MOTOR_B_PIN,         HIGH);
+    analogWrite(MOTOR_A_REVERSE_PIN , LOW);
+    analogWrite(MOTOR_B_REVERSE_PIN , LOW);
   } else if (joystick_Y){
-    analogWrite(MOTOR_A_PIN,         LOW)
-    analogWrite(MOTOR_B_PIN,         LOW)
-    analogWrite(MOTOR_A_PIN_REVERSE, HIGH)
-    analogWrite(MOTOR_B_PIN_REVERSE, HIGH)
+    analogWrite(MOTOR_A_PIN,         LOW);
+    analogWrite(MOTOR_B_PIN,         LOW);
+    analogWrite(MOTOR_A_REVERSE_PIN, HIGH);
+    analogWrite(MOTOR_B_REVERSE_PIN, HIGH);
   } else {
-    analogWrite(MOTOR_A_PIN,         LOW)
-    analogWrite(MOTOR_B_PIN,         LOW)
-    analogWrite(MOTOR_A_PIN_REVERSE, LOW)
-    analogWrite(MOTOR_B_PIN_REVERSE, LOW)
+    analogWrite(MOTOR_A_PIN,         LOW);
+    analogWrite(MOTOR_B_PIN,         LOW);
+    analogWrite(MOTOR_A_REVERSE_PIN, LOW);
+    analogWrite(MOTOR_B_REVERSE_PIN, LOW);
   }
 
-  if(joystick_X < 0) {
-    // Logika w prawo
-  } else {
-    // Logika w lewo
-  }
-  analogWrite(SPEED_A_PIN, joystick_Y);
-  analogWrite(SPEED_B_PIN, joystick_Y);
+    analogWrite(MOTOR_A_PIN,         HIGH);
+    analogWrite(MOTOR_B_PIN,         HIGH);
+    analogWrite(MOTOR_A_REVERSE_PIN , HIGH);
+    analogWrite(MOTOR_B_REVERSE_PIN , HIGH);
+  //analogWrite(SPEED_A_PIN, joystick_Y);
+  //analogWrite(SPEED_B_PIN, joystick_Y);
 
 }
