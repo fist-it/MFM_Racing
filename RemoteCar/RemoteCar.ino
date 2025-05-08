@@ -7,6 +7,7 @@
 #include <SPI.h>
 #include <nRF24L01.h>
 #include <RF24.h>
+#include <Servo.h>
 
 #define MOTOR_A_PIN         2
 #define MOTOR_A_REVERSE_PIN 3
@@ -16,6 +17,7 @@
 #define SPEED_A_PIN 6
 #define SPEED_B_PIN 6
 
+Servo myservo;
 
 RF24 radio(7, 8); // CE, CSN
 
@@ -30,6 +32,7 @@ void setup() {
   pinMode(MOTOR_B_PIN        , OUTPUT);
   pinMode(MOTOR_B_REVERSE_PIN, OUTPUT);
 
+  myservo.attach(10);
   // Sterowanie predkoscia
   pinMode(SPEED_A_PIN, OUTPUT);
   pinMode(SPEED_B_PIN, OUTPUT);
@@ -80,31 +83,29 @@ void loop() {
     char text[32] = "";
     radio.read(&text, sizeof(text));
     parse_packet(text);
-    delay(1000);
+    delay(50);
   }
   
   if(!reverse && joystick_Y){
-    analogWrite(MOTOR_A_PIN,         HIGH);
-    analogWrite(MOTOR_B_PIN,         HIGH);
-    analogWrite(MOTOR_A_REVERSE_PIN , LOW);
-    analogWrite(MOTOR_B_REVERSE_PIN , LOW);
+    digitalWrite(MOTOR_A_PIN,         HIGH);
+    digitalWrite(MOTOR_B_PIN,         HIGH);
+    digitalWrite(MOTOR_A_REVERSE_PIN , LOW);
+    digitalWrite(MOTOR_B_REVERSE_PIN , LOW);
   } else if (joystick_Y){
-    analogWrite(MOTOR_A_PIN,         LOW);
-    analogWrite(MOTOR_B_PIN,         LOW);
-    analogWrite(MOTOR_A_REVERSE_PIN, HIGH);
-    analogWrite(MOTOR_B_REVERSE_PIN, HIGH);
+    digitalWrite(MOTOR_A_PIN,         LOW);
+    digitalWrite(MOTOR_B_PIN,         LOW);
+    digitalWrite(MOTOR_A_REVERSE_PIN, HIGH);
+    digitalWrite(MOTOR_B_REVERSE_PIN, HIGH);
   } else {
-    analogWrite(MOTOR_A_PIN,         LOW);
-    analogWrite(MOTOR_B_PIN,         LOW);
-    analogWrite(MOTOR_A_REVERSE_PIN, LOW);
-    analogWrite(MOTOR_B_REVERSE_PIN, LOW);
+    digitalWrite(MOTOR_A_PIN,         LOW);
+    digitalWrite(MOTOR_B_PIN,         LOW);
+    digitalWrite(MOTOR_A_REVERSE_PIN, LOW);
+    digitalWrite(MOTOR_B_REVERSE_PIN, LOW);
   }
 
-    analogWrite(MOTOR_A_PIN,         HIGH);
-    analogWrite(MOTOR_B_PIN,         HIGH);
-    analogWrite(MOTOR_A_REVERSE_PIN , HIGH);
-    analogWrite(MOTOR_B_REVERSE_PIN , HIGH);
-  //analogWrite(SPEED_A_PIN, joystick_Y);
-  //analogWrite(SPEED_B_PIN, joystick_Y);
+  myservo.write(joystick_X);
+
+  analogWrite(SPEED_A_PIN, joystick_Y);
+  analogWrite(SPEED_B_PIN, joystick_Y);
 
 }
