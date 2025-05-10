@@ -2,4 +2,4 @@
 
 # Final Product
 
-![[car.jpg]]
+![car](car.jpg)
