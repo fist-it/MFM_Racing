@@ -15,7 +15,7 @@
 #define MOTOR_B_REVERSE_PIN 5
 
 #define SPEED_A_PIN 6
-#define SPEED_B_PIN 6
+#define SPEED_B_PIN 9
 
 Servo myservo;
 
@@ -59,7 +59,7 @@ void parse_packet(char msg[32]){
   }
   reverse = false;
 
-  joystick_X = map(joystick_X, -255, 255, 33, 123);
+  joystick_X = map(joystick_X, -255, 255, 33, 180);
   
 
   if(joystick_Y<0){
